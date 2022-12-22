@@ -16,6 +16,11 @@ def launch_active_scan():
     # TODO : explore the app (Spider, etc) before using the Active Scan API, Refer the explore section
     print('Active Scanning target {}'.format(target))
     scanID = zap.ascan.scan(target)
+    while int(zap.ascan.status(scanID)) < 100:
+        # Loop until the scanner has finished
+        print('Scan progress %: {}'.format(zap.ascan.status(scanID)))
+        time.sleep(8)
+    print("Scanning completed")
 
 try:
     launch_active_scan()

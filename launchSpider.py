@@ -17,8 +17,10 @@ def run_spider():
 	print('Spidering target {}'.format(target))
 	# The scan returns a scan id to support concurrent scanning
 	scanID = zap.spider.scan(target)
+	while int(zap.spider.status(scanID)) < 100:
+		print('Spider progress %: {}'.format(zap.spider.status(scanID)))
+		time.sleep(8)
 	print('Spider has completed!')
-	# Prints the URLs the spider has crawled
 	f.close()
 
 try:
