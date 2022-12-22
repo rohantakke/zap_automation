@@ -25,6 +25,6 @@ def run_spider():
 
 try:
    run_spider()
-except requests.exceptions.ConnectionError as e:    # This is the correct syntax
-   print(e)
+except requests.exceptions.ConnectionError as e:
+   print("Failed to establish connection with OWASP ZAP")
    print("Please chech if OWASP ZAP is running.")

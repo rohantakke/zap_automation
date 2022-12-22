@@ -13,7 +13,6 @@ def launch_active_scan():
 
     zap = ZAPv2(apikey=apiKey, proxies={'http': 'https://{}:{}'.format(host,port), 'https': 'http://{}:{}'.format(host,port)})
 
-    # TODO : explore the app (Spider, etc) before using the Active Scan API, Refer the explore section
     print('Active Scanning target {}'.format(target))
     scanID = zap.ascan.scan(target)
     while int(zap.ascan.status(scanID)) < 100:
