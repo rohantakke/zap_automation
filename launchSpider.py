@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-import time, json
+import time, json, requests
 from zapv2 import ZAPv2
 
 
-def run_spider():
+def run_spider():	
 	f = open('config.json')
 	data = json.load(f)
 
@@ -17,12 +17,12 @@ def run_spider():
 	print('Spidering target {}'.format(target))
 	# The scan returns a scan id to support concurrent scanning
 	scanID = zap.spider.scan(target)
-	while int(zap.spider.status(scanID)) < 100:
-		# Poll the status until it completes
-		print('Spider progress %: {}'.format(zap.spider.status(scanID)))
-		time.sleep(3)
-
 	print('Spider has completed!')
 	# Prints the URLs the spider has crawled
-	print('\n'.join(map(str, zap.spider.results(scanID))))
 	f.close()
+
+try:
+   run_spider()
+except requests.exceptions.ConnectionError as e:    # This is the correct syntax
+   print(e)
+   print("Please chech if OWASP ZAP is running.")
