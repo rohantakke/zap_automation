@@ -6,7 +6,6 @@ from zapv2 import ZAPv2
 def run_spider():	
 	f = open('config.json')
 	data = json.load(f)
-
 	target = data['target_url']
 	apiKey = data['api_key']
 	host = data['listening_host']
